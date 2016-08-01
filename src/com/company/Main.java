@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-        SumofTwoIntegers sumofTwoIntegers = new SumofTwoIntegers();
-        System.out.println(sumofTwoIntegers.getSum(-2, 1));
+        SumofTwoIntegers_371 sumofTwoIntegers371 = new SumofTwoIntegers_371();
+        System.out.println(sumofTwoIntegers371.getSum(-2, 1));
     }
 }

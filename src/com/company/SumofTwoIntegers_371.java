@@ -9,7 +9,7 @@ package com.company;
  * Example:
  * Given a = 1 and b = 2, return 3.
  */
-public class SumofTwoIntegers
+public class SumofTwoIntegers_371
 {
     /**
      * result of sum of two bits
