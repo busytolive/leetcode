@@ -9,7 +9,7 @@ package com.company;
  * Example:
  * Given a = 1 and b = 2, return 3.
  */
-public class SumofTwoIntegers
+public class SumofTwoIntegers_371
 {
     /**
      * result of sum of two bits
@@ -30,16 +30,21 @@ public class SumofTwoIntegers
         int currentBitOfB;
         boolean carryBitFromLow = false;
 
-        // calculate each bit of sum
+        // calculate each bit(0 - 31) of sum
         for (int index = 0; index < 32; index++) {
             /**
              * Precedence of bit operators
              * https://docs.oracle.com/javase/tutorial/java/nutsandbolts/operators.html
              */
-            currentBitOfA = (a & 1 << index) >> index;
-            currentBitOfB = (b & 1 << index) >> index;
+            // get the index bit of a
+            currentBitOfA = a >>> index & 1;
+            // get the index bit of b
+            currentBitOfB = b >>> index & 1;
+            // calculate the index bit of sum
             Result result = sumBit(currentBitOfA, currentBitOfB, carryBitFromLow);
+            // update if there is bit to carry to next iteration
             carryBitFromLow = result.carryBit;
+            // update value of sum
             sum = sum | (result.sum << index);
         }
 
