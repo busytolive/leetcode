@@ -10,13 +10,15 @@ public class Problem551 {
 
         for (int i = 0; i < s.length(); i++) {
             char current = s.charAt(i);
-            if (current == 'A') {
-                numOfContinuousL = 0;
-                numOfA++;
-            } else if (current == 'L') {
+
+            if (current == 'L') {
                 numOfContinuousL++;
             } else {
                 numOfContinuousL = 0;
+
+                if (current == 'A') {
+                    numOfA++;
+                }
             }
 
             if (numOfA > 1 || numOfContinuousL > 2) {

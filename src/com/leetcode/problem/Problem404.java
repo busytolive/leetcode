@@ -13,6 +13,7 @@ public class Problem404 {
 
         int sum = 0;
         TreeNode leftChild = root.left, rightChild = root.right;
+
         if (leftChild != null) {
             if (leaf(leftChild)) {
                 sum += leftChild.val;
@@ -20,9 +21,11 @@ public class Problem404 {
                 sum += sumOfLeftLeaves(leftChild);
             }
         }
+
         if (rightChild != null) {
             sum += sumOfLeftLeaves(rightChild);
         }
+
         return sum;
     }
 
