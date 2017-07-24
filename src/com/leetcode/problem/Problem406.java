@@ -5,34 +5,31 @@ import java.util.Comparator;
 
 /**
  * Queue Reconstruction by Height
- *
- * //TODO: improve performance: reduce running time
  */
 public class Problem406 {
+    private int peopleNum;
+    private final int defaultHeight = -1;
+
     public int[][] reconstructQueue(int[][] people) {
-        final int EMPTY = -1;
-        final int peopleNum = people.length;
-        int[][] reconstructedQueue = new int[peopleNum][2];
+        peopleNum = people.length;
+        int[][] reconstructedQueue = getEmptyReconstructedQueue();
 
-        for (int[] person : reconstructedQueue) {
-            Arrays.fill(person, EMPTY);
-        }
+        sortByHeightAscend(people);
 
-        Arrays.sort(people, new PersonComparator());
-
-        for(int i = 0; i < peopleNum; i++) {
+        for (int i = 0; i < peopleNum; i++) {
             int[] person = people[i];
             int height = person[0];
-            int numberOfHigherPersonAhead = person[1], currentNumberOfHigherPersonAhead = 0;
-
+            int totalNumberOfHigherPersonAhead = person[1];
+            int currentNumberOfHigherPersonAhead = 0;
             int index = 0;
             while (index < peopleNum) {
-                if (reconstructedQueue[index][0] != EMPTY && reconstructedQueue[index][0] < height) {
+                // does not count lower people
+                if (reconstructedQueue[index][0] != defaultHeight && reconstructedQueue[index][0] < height) {
                     index++;
                     continue;
                 }
 
-                if (currentNumberOfHigherPersonAhead == numberOfHigherPersonAhead) {
+                if (currentNumberOfHigherPersonAhead == totalNumberOfHigherPersonAhead) {
                     break;
                 }
 
@@ -41,18 +38,26 @@ public class Problem406 {
             }
 
             reconstructedQueue[index][0] = height;
-            reconstructedQueue[index][1] = numberOfHigherPersonAhead;
+            reconstructedQueue[index][1] = totalNumberOfHigherPersonAhead;
         }
 
         return reconstructedQueue;
-
     }
 
-    private static class PersonComparator implements Comparator<int[]>
-    {
-        public int compare(int[] person, int[] anotherPerson)
-        {
-            return person[0] - anotherPerson[0];
+    private int[][] getEmptyReconstructedQueue() {
+        int[][] reconstructedQueue = new int[peopleNum][2];
+        for (int[] person : reconstructedQueue) {
+            Arrays.fill(person, defaultHeight);
         }
+        return reconstructedQueue;
+    }
+
+    private void sortByHeightAscend(int[][] people) {
+        Arrays.sort(people, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] person, int[] anotherPerson) {
+                return person[0] - anotherPerson[0];
+            }
+        });
     }
 }
