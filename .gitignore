@@ -24,3 +24,6 @@ hs_err_pid*
 # IDE
 .idea/
 *.iml
+
+# Always change
+src/com/leetcode/Main.java

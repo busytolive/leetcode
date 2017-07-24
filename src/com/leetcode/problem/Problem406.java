@@ -5,6 +5,8 @@ import java.util.Comparator;
 
 /**
  * Queue Reconstruction by Height
+ *
+ * //TODO: improve performance: reduce running time
  */
 public class Problem406 {
     public int[][] reconstructQueue(int[][] people) {

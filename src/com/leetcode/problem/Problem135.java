@@ -1,85 +1,45 @@
 package com.leetcode.problem;
-
 import java.util.Arrays;
-import java.util.Comparator;
-
-import static java.lang.Math.max;
 
 /**
  * Candy
+ *
+ * Notes: divide and conquer. Divide the original rule into two separate rules: relative to left neighbour only and
+ * relative to right neighbour only, which are both easy to follow.
+ *
+ * Way to prove the correctness of the algorithm: for any three students [s1, s2, s3] who stands next to each
+ * other, we can easily to prove whatever ratings they have. The number of candies student s2 finally gets satisfies the
+ * original rule
  */
 public class Problem135 {
-    private static int[] mRatings;
-
     public int candy(int[] ratings) {
-        mRatings = ratings;
-        final int numOfChildren = ratings.length;
-        int numOfCandies = 0;
+        int sum = 0;
+        int[] left2right = new int[ratings.length];
+        int[] right2left = new int[ratings.length];
 
-        int candies[] = new int[numOfChildren];
-        for (int i = 0; i < numOfChildren; i++) {
-            candies[i] = 1;
-        }
+        Arrays.fill(left2right, 1);
+        Arrays.fill(right2left, 1);
 
-        final Integer[] indexs = getIndexListSortedByRating(ratings);
-        for (int i = 0; i < numOfChildren; i++) {
-            final int EMPTY = -1;
-            int index = indexs[i];
-            int rating = ratings[index];
-            int leftRating = EMPTY;
-            int rightRating = EMPTY;
-
-            if (index - 1 >= 0) {
-                leftRating = ratings[index - 1];
-            }
-            if (index + 1 < numOfChildren) {
-                rightRating = ratings[index + 1];
-            }
-
-            if (leftRating != EMPTY && rightRating != EMPTY) {
-                if (leftRating > rightRating) {
-                    if (rating > leftRating) {
-                        //candies[index] = candies[index - 1] + 1;
-                        candies[index] = max(candies[index - 1] + 1, candies[index + 1] + 1);
-                    } else if (rating > rightRating) {
-                        candies[index] = candies[index + 1] + 1;
-                    }
-                } else {
-                    if (rating > rightRating) {
-                        //candies[index] = candies[index + 1] + 1;
-                        candies[index] = max(candies[index - 1] + 1, candies[index + 1] + 1);
-                    } else if (rating > leftRating) {
-                        candies[index] = candies[index - 1] + 1;
-                    }
-                }
-            } else if (leftRating != EMPTY && rating > leftRating) {
-                candies[index] = candies[index - 1] + 1;
-            } else if (rightRating != EMPTY && rating > rightRating) {
-                candies[index] = candies[index + 1] + 1;
+        // The student with a higher rating than its left neighbour should always
+        // get more candies than its left neighbour
+        for (int i = 1; i < ratings.length; i++) {
+            if (ratings[i] > ratings[i - 1]) {
+                left2right[i] = left2right[i - 1] + 1;
             }
         }
 
-        for (int i = 0; i < numOfChildren; i++) {
-            numOfCandies += candies[i];
+        // The student with a higher rating than its right neighbour should always
+        // get more candies than its right neighbour
+        for (int i = ratings.length - 2; i >= 0; i--) {
+            if (ratings[i] > ratings[i + 1]) {
+                right2left[i] = right2left[i + 1] + 1;
+            }
         }
 
-        return numOfCandies;
-    }
-
-    Integer[] getIndexListSortedByRating(int[] ratings) {
-        Integer[] indexes = new Integer[ratings.length];
         for (int i = 0; i < ratings.length; i++) {
-            indexes[i] = i;
+            sum += Math.max(left2right[i], right2left[i]);
         }
-        Arrays.sort(indexes, new IndexComparator());
-        return indexes;
-    }
 
-    private static class IndexComparator implements Comparator<Integer>
-    {
-        public int compare(Integer index, Integer anotherIndex)
-        {
-            return  mRatings[index] - mRatings[anotherIndex];
-        }
+        return sum;
     }
 }
