@@ -1,14 +1,13 @@
 package com.leetcode;
 
-import com.leetcode.problem.Problem406;
-import com.leetcode.problem.Problem62;
+import com.leetcode.problem.*;
 
 import java.util.Arrays;
 
 public class Main {
 
     public static void main(String[] args) {
-        Problem62 problem62 = new Problem62();
-        problem62.uniquePaths(3, 7);
+        Problem351 problem351 = new Problem351();
+        System.out.println(problem351.numberOfPatterns(3, 8));
     }
 }
