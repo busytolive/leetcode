@@ -3,8 +3,6 @@ package com.leetcode;
 import com.leetcode.library.ListNode;
 import com.leetcode.problem.*;
 
-import java.util.Arrays;
-
 public class Main {
 
     public static void main(String[] args) {
