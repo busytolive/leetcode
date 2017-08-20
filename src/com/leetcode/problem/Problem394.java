@@ -10,6 +10,8 @@ import java.util.Stack;
 public class Problem394 {
     public String decodeString(String s) {
         Stack<Character> stack = new Stack<>();
+        StringBuilder decoded = new StringBuilder();
+
         for (int i = 0; i < s.length(); i++) {
             char next = s.charAt(i);
             if (next != ']') {
@@ -19,25 +21,25 @@ public class Problem394 {
 
             StringBuilder stringToRepeat = new StringBuilder();
             char charToRepeat;
+            StringBuilder repeatTimeString = new StringBuilder();
+            int repeatTime;
+
             while((charToRepeat = stack.pop()) != '[') {
                 stringToRepeat.append(charToRepeat);
             }
             stringToRepeat.reverse();
-
-            StringBuilder timeString = new StringBuilder();
             while(!stack.isEmpty() && Character.isDigit(stack.peek())) {
-                timeString.append(stack.pop());
+                repeatTimeString.append(stack.pop());
             }
-            timeString.reverse();
-            int time = Integer.valueOf(timeString.toString());
-            for(int j = 0; j < time; j++) {
-                for (char decoded: stringToRepeat.toString().toCharArray()) {
-                    stack.push(decoded);
+            repeatTimeString.reverse();
+            repeatTime = Integer.valueOf(repeatTimeString.toString());
+            for(int j = 0; j < repeatTime; j++) {
+                for (char repeated: stringToRepeat.toString().toCharArray()) {
+                    stack.push(repeated);
                 }
             }
         }
 
-        StringBuilder decoded = new StringBuilder();
         for (char decodedChar: stack) {
             decoded.append(decodedChar);
         }
