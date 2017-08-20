@@ -6,6 +6,7 @@ import com.leetcode.problem.*;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.print(new Problem405().toHex(26));
+        Problem394 problem394 = new Problem394();
+        System.out.println(problem394.decodeString("100[leetcode]"));
     }
 }
