@@ -16,6 +16,6 @@ public class Main {
     //    System.out.println(cache.get(1));       // returns -1 (not found)
     //    System.out.println(cache.get(3));       // returns 3
     //    System.out.println(cache.get(4));       // returns 4
-        System.out.println(new Problem464().canIWin(10, 1));
+        System.out.println(new Problem434().countSegments("Hello, my name is John"));
     }
 }

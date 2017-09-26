@@ -7,40 +7,32 @@ import java.util.Map;
 
 /**
  * K-diff Pairs in an Array
+ *
+ * Note: the key point is count the occurrence of each integer first("pre-process")
  */
 public class Problem532 {
     public int findPairs(int[] nums, int k) {
-        if (k < 0) {
-            return 0;
+        if (nums == null || nums.length == 0 || k < 0)   return 0;
+
+        Map<Integer, Integer> map = new HashMap<>();
+        int count = 0;
+        for (int i : nums) {
+            map.put(i, map.getOrDefault(i, 0) + 1); // <i, j> mean integer i occurs j times
         }
 
-        int numOfPairs = 0;
-        Map<Integer, Integer> expect2origin = new HashMap<>();
-        Map<Integer, Integer> foundPairs = new HashMap<>();
-        for (int num : nums) {
-            int expectedLeft = num - k;
-            int expectedRight = num + k;
-            if (!expect2origin.containsKey(num)) {
-                if (!(foundPairs.containsKey(expectedLeft) && foundPairs.get(expectedLeft) == num)) {
-                    expect2origin.put(expectedLeft, num);
-                }
-                if (!(foundPairs.containsKey(expectedRight) && foundPairs.get(expectedRight) == num)) {
-                    expect2origin.put(expectedRight, num);
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if (k == 0) {
+                //count how many elements in the array that appear more than twice.
+                if (entry.getValue() >= 2) {
+                    count++;
                 }
             } else {
-                numOfPairs++;
-                int origin = expect2origin.get(num);
-                foundPairs.put(origin, num);
-                foundPairs.put(num, origin);
-                if (!(foundPairs.containsKey(expectedLeft) && foundPairs.get(expectedLeft) == num)) {
-                    expect2origin.put(expectedLeft, num);
+                if (map.containsKey(entry.getKey() + k)) {
+                    count++;
                 }
-                if (!(foundPairs.containsKey(expectedRight) && foundPairs.get(expectedRight) == num)) {
-                    expect2origin.put(expectedRight, num);
-                }
-                expect2origin.remove(num);
             }
         }
-        return numOfPairs;
+
+        return count;
     }
 }
