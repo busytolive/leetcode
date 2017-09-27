@@ -16,6 +16,7 @@ public class Main {
     //    System.out.println(cache.get(1));       // returns -1 (not found)
     //    System.out.println(cache.get(3));       // returns 3
     //    System.out.println(cache.get(4));       // returns 4
-        System.out.println(new Problem434().countSegments("Hello, my name is John"));
+        int[][] dungeon = new int[][] {{-2, -3, 3}, {-5, -10, 1}, {10, 30, -5}};
+        System.out.println(new Problem174().calculateMinimumHP(dungeon));
     }
 }
