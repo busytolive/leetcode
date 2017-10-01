@@ -17,7 +17,6 @@ public class Main {
     //    System.out.println(cache.get(1));       // returns -1 (not found)
     //    System.out.println(cache.get(3));       // returns 3
     //    System.out.println(cache.get(4));       // returns 4
-        System.out.println(new Problem253().minMeetingRooms(
-                new Interval[]{new Interval(9, 10), new Interval(4, 9), new Interval(4, 17)}));
+    new Problem301().removeInvalidParentheses("()(()");
     }
 }
