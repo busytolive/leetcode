@@ -6,7 +6,6 @@ import com.leetcode.problem.*;
 
 public class Main {
     public static void main(String[] args) {
-        Problem357 problem357 = new Problem357();
-        System.out.println(problem357.countNumbersWithUniqueDigits(0));
+        System.out.println(new Problem342().isPowerOfFour(16));
     }
 }
