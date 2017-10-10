@@ -6,6 +6,6 @@ import com.leetcode.problem.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(new Problem342().isPowerOfFour(16));
+        System.out.println(new Problem343().integerBreak(10));
     }
 }
