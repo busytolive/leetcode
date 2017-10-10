@@ -1,4 +1,4 @@
-package com.leetcode;
+package com.leetcode.problem;
 
 /**
  * Unique Binary Search Trees
