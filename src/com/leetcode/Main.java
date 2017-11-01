@@ -6,6 +6,6 @@ import com.leetcode.problem.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(new Problem299().getHint("1122", "2211"));
+        System.out.println(new Problem541().reverseStr("abcdefg", 8));
     }
 }

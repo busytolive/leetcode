@@ -1,10 +1,5 @@
 package com.leetcode.problem;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
 /**
  * Bulls and Cows
  * since only contain digits, we can use int[256] instead of Map to count character, which is faster.
