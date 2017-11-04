@@ -6,6 +6,6 @@ import com.leetcode.problem.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(new Problem541().reverseStr("abcdefg", 8));
+        System.out.println(new Problem166().fractionToDecimal(1, 6));
     }
 }
