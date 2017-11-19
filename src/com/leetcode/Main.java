@@ -6,6 +6,7 @@ import com.leetcode.problem.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(new Problem166().fractionToDecimal(1, 6));
-    }
+        System.out.println(new Problem688().knightProbability(8, 30, 6, 4));
+}
+
 }
