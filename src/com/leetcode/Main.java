@@ -6,7 +6,7 @@ import com.leetcode.problem.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(new Problem688().knightProbability(8, 30, 6, 4));
-}
-
+        int[][] grid = new int[][]{{1,3,1}, {1,5,1}, {4,2,1}};
+        System.out.println(new Problem64().minPathSum(grid));
+    }
 }
